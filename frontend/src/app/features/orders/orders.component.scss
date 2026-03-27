@@ -1,0 +1,80 @@
+.status-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.status-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--r-md);
+  background: none;
+  border: 1.5px solid var(--void-05);
+  cursor: pointer;
+  font-size: 13px; font-weight: 500;
+  color: var(--void-40);
+  transition: all var(--transition);
+
+  &:hover { color: var(--void); border-color: var(--void-20); }
+  &--active { background: var(--void); color: #faf8f4; border-color: var(--void); }
+}
+
+.status-tab__count {
+  background: rgba(255,255,255,.15);
+  padding: 1px 7px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+
+  .status-tab--active & { background: var(--amber); color: var(--void); }
+}
+
+.loading-state {
+  text-align: center;
+  padding: 48px;
+  color: var(--void-20);
+}
+
+.table-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--amber-pale);
+  color: var(--amber);
+  border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+}
+
+.item-line { font-size: 12px; color: var(--void-40); }
+.item-more { font-size: 11px; color: var(--void-20); }
+.time-cell { font-size: 12px; color: var(--void-20); }
+
+.action-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.cancel-btn  { color: var(--crimson); }
+
+.bill-summary {
+  background: var(--cream);
+  border-radius: var(--r-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--void-40);
+
+  &--total {
+    border-top: 1px solid var(--void-05);
+    padding-top: 10px;
+    margin-top: 4px;
+    color: var(--void);
+    font-size: 16px;
+  }
+}

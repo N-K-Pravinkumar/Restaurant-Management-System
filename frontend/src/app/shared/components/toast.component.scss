@@ -1,0 +1,17 @@
+// Toast layout and icon styles — global theme tokens
+// (.toast-container and .toast base styles are in styles.scss)
+
+.toast__icon  { font-size: 14px; flex-shrink: 0; }
+.toast__msg   { flex: 1; }
+.toast__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--void-20);
+  font-size: 12px;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color var(--transition);
+
+  &:hover { color: var(--void); }
+}

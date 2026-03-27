@@ -1,0 +1,154 @@
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.qa-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: var(--cream);
+  border: 1px solid var(--void-05);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: var(--void);
+  transition: all var(--transition);
+
+  &:hover {
+    background: var(--amber-pale);
+    border-color: var(--amber);
+    transform: translateY(-2px);
+  }
+}
+
+.qa-icon {
+  font-size: 24px;
+}
+.qa-label {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.top-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-rank {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--void-20);
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.top-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100px;
+}
+
+.top-bar {
+  height: 4px;
+  background: var(--amber);
+  border-radius: 2px;
+  min-width: 4px;
+  transition: width 0.6s ease;
+}
+
+.top-qty {
+  font-size: 12px;
+  color: var(--void-20);
+  font-family: var(--font-mono);
+}
+
+.status-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.status-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--void-05);
+  background: white;
+  text-decoration: none;
+  transition: all var(--transition);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+.status-chip__icon {
+  font-size: 18px;
+}
+.status-chip__count {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+.status-chip__label {
+  font-size: 12px;
+  color: var(--void-20);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.status-chip--amber .status-chip__count {
+  color: var(--amber);
+}
+.status-chip--teal .status-chip__count {
+  color: var(--teal);
+}
+.status-chip--success .status-chip__count {
+  color: var(--success);
+}

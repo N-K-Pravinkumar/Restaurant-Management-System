@@ -1,0 +1,59 @@
+<div class="login-page">
+  <div class="login-left">
+    <div class="login-brand">
+      <div class="login-mark">S</div>
+      <span class="login-name">Savora</span>
+    </div>
+    <div class="login-hero">
+      <h1 class="login-hero__title">Every dish tells<br><em>a story.</em></h1>
+      <p class="login-hero__sub">Complete restaurant management — orders, menu, billing and analytics in one elegant system.</p>
+    </div>
+    <div class="login-stats">
+      <div class="ls"><span class="ls__v">500+</span><span class="ls__l">Orders/day</span></div>
+      <div class="ls"><span class="ls__v">50+</span><span class="ls__l">Menu items</span></div>
+      <div class="ls"><span class="ls__v">100%</span><span class="ls__l">Satisfaction</span></div>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="login-card">
+      <h2 class="login-card__title">Welcome back</h2>
+      <p class="login-card__sub">Sign in to your restaurant dashboard</p>
+      <form class="login-form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label class="field__label">Username</label>
+          <div class="field__wrap">
+            <span class="field__icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
+            </span>
+            <input class="field__input field__input--icon" type="text" name="username" [(ngModel)]="username" placeholder="admin" required />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field__label">Password</label>
+          <div class="field__wrap">
+            <span class="field__icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input class="field__input field__input--icon" [type]="showPass()?'text':'password'" name="password" [(ngModel)]="password" placeholder="••••••••" required />
+            <button type="button" class="field__eye" (click)="togglePass()">{{showPass()?'🙈':'👁️'}}</button>
+          </div>
+        </div>
+        <div class="demo-section">
+          <p class="demo-title">Quick login:</p>
+          <div class="demo-pills">
+            <button type="button" class="dp dp--admin"   (click)="fill('admin',  'Admin@123')">Admin</button>
+            <button type="button" class="dp dp--manager" (click)="fill('manager','Admin@123')">Manager</button>
+            <button type="button" class="dp dp--waiter"  (click)="fill('waiter1','Admin@123')">Waiter</button>
+            <button type="button" class="dp dp--cashier" (click)="fill('cashier','Admin@123')">Cashier</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--amber btn--lg login-submit" [disabled]="loading()">
+          @if(loading()){
+            <svg class="spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+            Signing in…
+          } @else { Sign in → }
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="app-shell">
+  <aside class="sidebar" [class.sidebar--collapsed]="collapsed()">
+    <div class="sidebar__header">
+      <div class="sidebar__logo">
+        <div class="sidebar__mark">S</div>
+        @if(!collapsed()){
+          <div>
+            <span class="sidebar__brand">Savora</span>
+            <span class="sidebar__tag">Restaurant OS</span>
+          </div>
+        }
+      </div>
+      <button class="sidebar__toggle" (click)="toggleCollapsed()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path [attr.d]="collapsed()?'M9 18l6-6-6-6':'M15 18l-6-6 6-6'"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar__nav">
+      @for(item of nav; track item.path){
+        <a [routerLink]="item.path" routerLinkActive="sidebar__link--active"
+           class="sidebar__link" [title]="collapsed()?item.label:''">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0">
+            <path [attr.d]="item.icon"/>
+          </svg>
+          @if(!collapsed()){<span>{{item.label}}</span>}
+        </a>
+      }
+    </nav>
+
+    <div class="sidebar__footer">
+      @if(!collapsed() && auth.user()){
+        <div class="sidebar__user">
+          <div class="sidebar__avatar">{{ avatarLetter() }}</div>
+          <div style="overflow:hidden">
+            <p class="sidebar__user-name">{{auth.user()!.fullName}}</p>
+            <p class="sidebar__user-role">{{auth.user()!.role}}</p>
+          </div>
+        </div>
+      }
+      <button class="sidebar__logout" (click)="auth.logout()" [title]="collapsed()?'Logout':''">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        @if(!collapsed()){<span>Logout</span>}
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet/>
+  </main>
+</div>

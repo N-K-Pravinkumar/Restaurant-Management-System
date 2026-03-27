@@ -1,0 +1,120 @@
+<div class="page fade-up">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">New Order</h1>
+      <p class="page-subtitle">Table {{tableNumber}} · {{cart().length}} items</p>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn--outline" (click)="router.navigate(['/orders'])">Cancel</button>
+      <button class="btn btn--amber" (click)="placeOrder()" [disabled]="cart().length===0||placing()">
+        {{placing()?'Placing…':'Place Order →'}}
+      </button>
+    </div>
+  </div>
+
+  <div class="new-order-layout">
+    <!-- Menu Panel -->
+    <div class="menu-panel card">
+      <div class="search-wrap">
+        <div class="field">
+          <div class="field__wrap">
+            <span class="field__icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </span>
+            <input class="field__input field__input--icon" [(ngModel)]="search" (ngModelChange)="filterMenu()" placeholder="Search menu…" />
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-tabs">
+        @for(c of cats; track c){
+          <button class="cat-tab" [class.cat-tab--active]="activeCategory()===c" (click)="activeCategory.set(c); filterMenu()">
+            {{catIcons[c]||'🍽️'}} {{c}}
+          </button>
+        }
+      </div>
+
+      <div class="menu-items">
+        @for(item of filteredMenu(); track item.id){
+          <div class="mi" [class.mi--disabled]="!item.available" (click)="item.available&&addToCart(item)">
+            <div class="mi__info">
+              <span class="veg-dot" [class.veg-dot--veg]="item.veg">●</span>
+              <div>
+                <p class="mi__name">{{item.name}}</p>
+                <p class="mi__cat">{{item.category}} · {{item.preparationTime}} min</p>
+              </div>
+            </div>
+            <div class="mi__right">
+              <span class="mi__price">₹{{item.price}}</span>
+              @if(getCartQty(item.id) > 0){
+                <div class="mi__qty-ctrl" (click)="$event.stopPropagation()">
+                  <button (click)="removeFromCart(item.id)">−</button>
+                  <span>{{getCartQty(item.id)}}</span>
+                  <button (click)="addToCart(item)">+</button>
+                </div>
+              } @else {
+                <button class="btn btn--amber btn--sm add-btn" [disabled]="!item.available">+</button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Order Summary Panel -->
+    <div class="order-panel">
+      <div class="card" style="margin-bottom:16px">
+        <h3 class="section-title" style="margin-bottom:16px">Order Details</h3>
+        <div class="order-fields">
+          <div class="field">
+            <label class="field__label">Table Number *</label>
+            <input class="field__input" type="number" [(ngModel)]="tableNumber" min="1" max="30" />
+          </div>
+          <div class="field">
+            <label class="field__label">Customer Phone (optional)</label>
+            <input class="field__input" [(ngModel)]="customerPhone" placeholder="Search by phone…" (blur)="lookupCustomer()" />
+            @if(customer()){<p class="customer-found">✓ {{customer()!.name}} · {{customer()!.loyaltyTier}}</p>}
+          </div>
+          <div class="field">
+            <label class="field__label">Notes</label>
+            <textarea class="field__input" [(ngModel)]="notes" placeholder="Special requests…" rows="2" style="min-height:60px"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart -->
+      <div class="card">
+        <h3 class="section-title">Cart</h3>
+        @if(cart().length===0){
+          <div class="cart-empty">
+            <p style="font-size:32px">🛒</p>
+            <p class="cart-empty__label">Add items from the menu</p>
+          </div>
+        } @else {
+          <div class="cart-items">
+            @for(ci of cart(); track ci.id){
+              <div class="cart-item">
+                <div style="flex:1;min-width:0">
+                  <p class="cart-item__name">{{ci.name}}</p>
+                  <p class="cart-item__sub">₹{{ci.price}} × {{ci.qty}}</p>
+                </div>
+                <div class="cart-item__right">
+                  <span class="cart-item__total">₹{{(ci.price*ci.qty).toFixed(0)}}</span>
+                  <button class="btn btn--ghost btn--sm remove-btn" (click)="removeFromCart(ci.id)">✕</button>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="cart-totals">
+            <div class="cart-row"><span>Subtotal</span><span>₹{{subtotal() | number:'1.0-0'}}</span></div>
+            <div class="cart-row"><span>GST (5%)</span><span>₹{{tax() | number:'1.0-2'}}</span></div>
+            <div class="cart-row cart-row--total"><span>Total</span><span>₹{{total() | number:'1.0-0'}}</span></div>
+          </div>
+          <button class="btn btn--amber btn--lg place-btn" (click)="placeOrder()" [disabled]="placing()">
+            {{placing()?'Placing Order…':'Place Order →'}}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
