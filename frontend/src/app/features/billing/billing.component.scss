@@ -1,0 +1,74 @@
+.bill-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.bill-card {
+  background: white;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--void-05);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.bill-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bill-order-num { font-size: 15px; font-weight: 600; }
+.bill-card__meta { font-size: 12px; color: var(--void-20); }
+.bill-total { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--amber); }
+
+.bill-items {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 10px;
+  background: var(--cream);
+  border-radius: var(--r-sm);
+}
+
+.bill-item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--void-40);
+}
+
+.bill-breakdown { display: flex; flex-direction: column; gap: 6px; }
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--void-40);
+
+  &--total {
+    font-size: 15px; font-weight: 600; color: var(--void);
+    border-top: 1px solid var(--void-05);
+    padding-top: 8px;
+  }
+}
+
+.pay-methods { display: flex; gap: 8px; }
+
+.pay-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1.5px solid var(--void-05);
+  border-radius: var(--r-md);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px; font-weight: 500;
+  font-family: var(--font-body);
+  transition: all var(--transition);
+
+  &:hover  { border-color: var(--amber); background: var(--amber-pale); }
+  &--active{ background: var(--amber); color: white; border-color: var(--amber); }
+}
+
+.collect-btn { width: 100%; justify-content: center; }
+
+.time-cell { font-size: 12px; color: var(--void-20); }

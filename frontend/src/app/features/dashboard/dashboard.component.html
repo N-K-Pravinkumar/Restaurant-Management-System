@@ -1,0 +1,94 @@
+<div class="page fade-up">
+  <div class="page-header">
+    <div>
+      <p style="font-size:13px;color:var(--void-20);margin-bottom:4px">{{greeting}}, {{firstName()}} 👋</p>
+      <h1 class="page-title">Restaurant Dashboard</h1>
+    </div>
+    <div style="text-align:right">
+      <p style="font-size:11px;color:var(--void-20);text-transform:uppercase;letter-spacing:.1em">{{today | date:'EEEE'}}</p>
+      <p style="font-size:14px;font-weight:500">{{today | date:'d MMMM y'}}</p>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card stat-card--amber">
+      <div class="stat-card__icon">💰</div>
+      <div>
+        <p class="stat-card__label">Today Revenue</p>
+        <p class="stat-card__value">₹{{stats().todayRevenue | number:'1.0-0'}}</p>
+        <p class="stat-card__delta stat-card__delta--up">Month: ₹{{stats().monthRevenue | number:'1.0-0'}}</p>
+      </div>
+    </div>
+    <div class="stat-card stat-card--teal">
+      <div class="stat-card__icon">🍽️</div>
+      <div>
+        <p class="stat-card__label">Active Orders</p>
+        <p class="stat-card__value">{{stats().activeOrders}}</p>
+        <p class="stat-card__delta" style="color:var(--amber)">{{stats().pendingOrders}} pending · {{stats().preparingOrders}} preparing</p>
+      </div>
+    </div>
+    <div class="stat-card stat-card--default">
+      <div class="stat-card__icon">📋</div>
+      <div>
+        <p class="stat-card__label">Total Orders</p>
+        <p class="stat-card__value">{{stats().totalOrders}}</p>
+      </div>
+    </div>
+    <div class="stat-card stat-card--default">
+      <div class="stat-card__icon">👥</div>
+      <div>
+        <p class="stat-card__label">Customers</p>
+        <p class="stat-card__value">{{stats().totalCustomers}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="card">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="qa-grid">
+        <a routerLink="/orders/new" class="qa-card">
+          <span class="qa-icon">➕</span><span class="qa-label">New Order</span>
+        </a>
+        <a routerLink="/orders" class="qa-card">
+          <span class="qa-icon">🍽️</span><span class="qa-label">View Orders</span>
+        </a>
+        <a routerLink="/menu" class="qa-card">
+          <span class="qa-icon">📋</span><span class="qa-label">Manage Menu</span>
+        </a>
+        <a routerLink="/billing" class="qa-card">
+          <span class="qa-icon">💳</span><span class="qa-label">Billing</span>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <h2 class="section-title">Top Selling Today</h2>
+      @if(stats().topSellingItems?.length){
+        <div class="top-items">
+          @for(item of stats().topSellingItems; track item.name; let i=$index){
+            <div class="top-item">
+              <span class="top-rank">{{(i+1).toString().padStart(2,'0')}}</span>
+              <span class="top-name">{{item.name}}</span>
+              <div class="top-bar-wrap">
+                <div class="top-bar" [style.width.%]="barWidth(item, stats().topSellingItems)"></div>
+                <span class="top-qty">{{item.quantity}}</span>
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        <p style="color:var(--void-20);font-size:14px">No data yet today.</p>
+      }
+    </div>
+  </div>
+
+  <div class="status-row">
+    @for(s of orderStatuses; track s.label){
+      <a routerLink="/orders" class="status-chip status-chip--{{s.color}}">
+        <span class="status-chip__icon">{{s.icon}}</span>
+        <span class="status-chip__count">{{s.count}}</span>
+        <span class="status-chip__label">{{s.label}}</span>
+      </a>
+    }
+  </div>
+</div>
