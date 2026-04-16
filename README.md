@@ -20,11 +20,11 @@ A full-stack Restaurant Management System designed to streamline restaurant oper
 ```
 Restaurant-Management-System/
 │
-├── backend/        # Server-side logic (Java / Node / APIs)
+├── backend/        # Server-side logic (Java/ APIs)
 │   ├── src/
 │   └── config/
 │
-├── frontend/       # UI (React / HTML / CSS / JS)
+├── frontend/       # UI (HTML / CSS / JS)
 │   ├── src/
 │   └── public/
 │
@@ -37,14 +37,14 @@ Restaurant-Management-System/
 
 ### 🔹 Backend
 
-* Java / Node.js *(choose what you used)*
+* Java 
 * REST APIs
 * MySQL Database
 * JDBC / ORM
 
 ### 🔹 Frontend
 
-* React.js / HTML / CSS / JavaScript
+*  HTML / CSS / JavaScript
 
 ### 🔹 Tools
 
