@@ -1,142 +1,99 @@
-# 🍽️ Restaurant Management System
+**Restaurant Management System (Full Stack)
+**
+A full stack Restaurant Management System built using Java, Spring Boot, Microservices, and Angular to streamline restaurant operations such as order management, billing, and customer workflows.
 
-A full-stack Restaurant Management System designed to streamline restaurant operations such as order management, billing, and customer handling. This project demonstrates scalable architecture, clean code practices, and real-world application development.
+This project demonstrates scalable backend architecture, secure API design, and real-world full stack development.
 
----
+**Features
+**
+Order Management (Create, Update, Delete orders)
+Billing System with real-time calculation
+Menu Management
+Kitchen Order Tracking
+Role-Based Access Control (Admin, Manager, Staff)
+Modular and scalable microservices architecture
 
-## 🚀 Features
+**Architecture
+**
+Backend developed using Spring Boot (REST APIs)
+Microservices-based modular design
+Frontend built using Angular
+Secure authentication using JWT + Spring Security
+Database integration with MySQL
 
-* 🧾 Order Management (Create, Update, Delete orders)
-* 💳 Billing System with real-time calculation
-* 🍔 Menu Management
-* 👨‍🍳 Kitchen Order Tracking
-* 📊 Admin Dashboard (optional if added)
-* 🔐 Role-based access (Admin/User) *(if implemented)*
+**Tech Stack
+**
+**Backend:
+**
+Java
+Spring Boot
+Microservices
+REST APIs
+Spring Security (JWT)
+MySQL
 
----
+**Frontend:
+**
+Angular
+HTML
+CSS
 
-## 🏗️ Project Structure
+**Tools:
+**
+Git & GitHub
+Postman (API Testing)
+Maven
 
-```
-Restaurant-Management-System/
-│
-├── backend/        # Server-side logic (Java/ APIs)
-│   ├── src/
-│   └── config/
-│
-├── frontend/       # UI (HTML / CSS / JS)
-│   ├── src/
-│   └── public/
-│
-└── README.md
-```
+Setup Instructions
 
----
-
-## 🛠️ Tech Stack
-
-### 🔹 Backend
-
-* Java 
-* REST APIs
-* MySQL Database
-* JDBC / ORM
-
-### 🔹 Frontend
-
-*  HTML / CSS / JavaScript
-
-### 🔹 Tools
-
-* Git & GitHub
-* Postman (API Testing)
-
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Clone the Repository
-
-```bash
+**Clone Repository
+**
 git clone https://github.com/N-K-Pravinkumar/Restaurant-Management-System.git
+
 cd Restaurant-Management-System
-```
 
----
-
-### 2️⃣ Backend Setup
-
-```bash
+**Backend Setup
+**
 cd backend
-# If Java
-javac Main.java
-java Main
+mvn clean install
+mvn spring-boot:run
 
-# OR if Node
-npm install
-npm start
-```
+Frontend Setup
 
----
-
-### 3️⃣ Frontend Setup
-
-```bash
 cd frontend
 npm install
-npm start
-```
+ng serve
 
----
+**Database Setup
+**
+Install MySQL
+Create database:
 
-## 🗄️ Database Setup
-
-1. Install MySQL
-2. Create a database:
-
-```sql
 CREATE DATABASE restaurant_db;
-```
 
-3. Update DB credentials in backend config
+Update database credentials in application.properties
 
----
+**API Endpoints (Sample)
+**
+GET /menu → Fetch menu
+POST /orders → Create order
+GET /orders → Get all orders
+DELETE /orders/{id} → Delete order
 
-## 📌 API Endpoints (Example)
+**Key Highlights
+**
+Built 10+ REST APIs for restaurant workflows
+Implemented JWT authentication with RBAC
+Designed microservices architecture for scalability
+Optimized database queries for high concurrency performance
+Integrated Angular frontend with backend APIs
 
-| Method | Endpoint   | Description     |
-| ------ | ---------- | --------------- |
-| GET    | /menu      | Fetch menu      |
-| POST   | /order     | Create order    |
-| GET    | /orders    | View all orders |
-| DELETE | /order/:id | Delete order    |
+**Author
+**
+Pravinkumar N K
+Software Engineer | Java | Spring Boot | Angular
 
----
-
-## 📷 Screenshots *(Optional)*
-
-*Add screenshots of your UI here*
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a new branch
-3. Commit changes
-4. Push and create PR
-
----
-
-## 🧑‍💻 Author
-
-**Pravinkumar N K**
-
-* Backend Developer | Java | Full Stack Enthusiast
-
----
-
-## ⭐ Acknowledgements
-
-* Inspired by real-world restaurant workflows
-* Built as a hands-on learning project
+**Acknowledgements
+**
+Inspired by real-world restaurant operations
+Built as a hands-on full stack learning project
